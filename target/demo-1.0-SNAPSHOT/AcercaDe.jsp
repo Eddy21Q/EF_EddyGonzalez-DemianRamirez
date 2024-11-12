@@ -52,8 +52,8 @@
         
         <div class="creators">
             <h2>Creadores de la Página</h2>
-            <p><strong>Eddy Josue Gonzalez Quiros</strong></p>
-            <p><strong>Demian Ramirez Sandoval</strong></p>
+            <p><strong>Eddy Josué González Quirós</strong></p>
+            <p><strong>Demian Josué Ramírez Sandoval</strong></p>
         </div>
     </div>
 </body>

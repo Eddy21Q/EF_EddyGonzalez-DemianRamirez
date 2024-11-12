@@ -51,7 +51,6 @@
     <!-- Importa Font Awesome para usar iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Estilos para fondo y formulario */
         html, body {
             height: 100%;
             margin: 0;
@@ -108,12 +107,13 @@
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
+            padding: 10px 35px 10px 10px; /* Espacio adicional para el ícono */
             margin: 5px 0 10px;
             border: 1px solid #333;
             border-radius: 3px;
             background-color: #222;
             color: #ddd;
+            box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
         }
 
         input[type="text"]::placeholder,
@@ -137,7 +137,18 @@
         }
         
         button i {
-            font-size: 1.2em; /* Tamaño del icono */
+            font-size: 1.2em;
+        }
+
+        /* Estilo para el spinner */
+        .loading-icon {
+            display: none;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .error-message {
@@ -155,23 +166,62 @@
             display: none;
             color: white;
         }
+
+        /* Estilo para el ícono del ojo */
+        .toggle-password {
+            position: absolute;
+            right: 10px; /* Ajuste para que el ícono quede alineado */
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #ddd;
+        }
     </style>
+    <script>
+        function mostrarCargando() {
+            const boton = document.getElementById('loginButton');
+            const textoBoton = document.getElementById('loginText');
+            const spinner = document.getElementById('spinnerIcon');
+            textoBoton.style.display = 'none';
+            spinner.style.display = 'inline-block';
+            boton.disabled = true; // Desactiva el botón mientras se envía el formulario
+        }
+
+        // Función para mostrar y ocultar la contraseña
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
 </head>
 <body>
     <%
         if (user == null) {
     %>
-        <form action="Login.jsp" method="post" style="display: block;">
+        <form action="Login.jsp" method="post" style="display: block;" onsubmit="mostrarCargando()">
             <h1>Iniciar Sesión</h1>
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
             
             <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+            <div style="position: relative;">
+                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                <i id="eyeIcon" class="fas fa-eye-slash toggle-password" onclick="togglePassword()"></i>
+            </div>
             
-            <!-- Botón con icono -->
-            <button type="submit">
-                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            <!-- Botón con indicador de carga -->
+            <button type="submit" id="loginButton">
+                <span id="loginText"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span>
+                <i id="spinnerIcon" class="fas fa-spinner loading-icon"></i>
             </button>
             
             <% 
