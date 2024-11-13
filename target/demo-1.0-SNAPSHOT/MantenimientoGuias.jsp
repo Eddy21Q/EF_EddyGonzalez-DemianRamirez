@@ -22,7 +22,8 @@
     } catch (Exception e) {
         out.println("Error de conexión: " + e.getMessage());
     }
-%><!DOCTYPE html>
+%>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +58,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             padding: 30px;
             background-color: rgba(255, 255, 255, 0.85);
@@ -65,7 +66,9 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             animation: slideIn 1s ease-out;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* Animación de entrada */
@@ -78,7 +81,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 15px;
+            margin: 10px;
             padding: 12px 30px;
             border-radius: 30px;
             text-align: center;
@@ -97,7 +100,7 @@
 
         /* Estilo de los botones */
         .action-btn {
-            background-color: #3498db;
+            background-color: #3498db; /* Azul para botones */
             color: white;
             border: 2px solid #3498db;
         }
@@ -159,6 +162,16 @@
             background-color: #2980b9;
         }
 
+        footer {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -186,6 +199,11 @@
 
     <!-- Botón flotante para volver al inicio -->
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-to-top">↑</button>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Administración de Turismo. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         // Mostrar el botón de "volver arriba" cuando el usuario hace scroll

@@ -32,7 +32,7 @@
         /* Estilos generales */
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('images/image13.jpg'); /* Cambia la imagen de fondo si lo deseas */
+            background-image: url('images/image13.jpg');
             background-size: cover;
             background-position: center center;
             margin: 0;
@@ -47,7 +47,7 @@
         }
 
         header {
-            background-color: rgba(46, 204, 113, 0.8); /* Cambia el color si lo prefieres */
+            background-color: rgba(46, 204, 113, 0.8);
             color: white;
             padding: 20px;
             text-align: center;
@@ -57,7 +57,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             padding: 30px;
             background-color: rgba(255, 255, 255, 0.85);
@@ -65,7 +65,9 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             animation: slideIn 1s ease-out;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* Animación de entrada */
@@ -78,7 +80,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 15px;
+            margin: 10px;
             padding: 12px 30px;
             border-radius: 30px;
             text-align: center;
@@ -159,6 +161,16 @@
             background-color: #27ae60;
         }
 
+        footer {
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -186,6 +198,11 @@
 
     <!-- Botón flotante para volver al inicio -->
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-to-top">↑</button>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Administración de Turismo. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         // Mostrar el botón de "volver arriba" cuando el usuario hace scroll

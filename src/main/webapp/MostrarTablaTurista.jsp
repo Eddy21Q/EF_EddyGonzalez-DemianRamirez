@@ -6,53 +6,70 @@
     <meta charset="UTF-8">
     <title>Lista de Turistas</title>
     <style>
-        /* Estilos para la imagen de fondo */
+        /* Fondo y fuente */
         body {
             font-family: Arial, sans-serif;
-            background: url('images/image9.jpg') no-repeat center center fixed; /* Imagen de fondo */
-            background-size: cover; /* Hace que la imagen cubra toda la página */
-            color: white; /* Color de texto blanco para mejor contraste */
+            background: url('images/image9.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
             margin: 0;
             padding: 0;
         }
 
-        /* Estilos para la tabla */
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        /* Tabla estilizada */
         table {
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con opacidad para la tabla */
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
+            background-color: rgba(255, 255, 255, 0.85);
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: center;
-            color: #333; /* Color oscuro para el texto */
+            color: #333;
+            border: 1px solid #ddd;
         }
 
+        /* Efecto de borde animado en encabezados */
         th {
             background-color: #4CAF50;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Borde animado y resplandor */
+        th::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            animation: borderMove 2s linear infinite;
+        }
+
+        @keyframes borderMove {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        /* Fila alternada */
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: rgba(242, 242, 242, 0.8);
         }
 
-        h2 {
-            text-align: center;
-            color: #fff; /* Color blanco para el título */
-        }
-
-        /* Estilo para los bordes de las celdas */
-        td, th {
-            border: 1px solid #ddd;
-        }
     </style>
 </head>
 <body>
@@ -70,21 +87,16 @@
     </tr>
 
     <%
-        // Variables de conexión
         Connection conn = null;
         CallableStatement stmt = null;
         ResultSet rs = null;
 
         try {
-            // Conectar a la base de datos
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/administracionturismo", "root", "josueProgramacion2");
-
-            // Llamada al procedimiento almacenado
             stmt = conn.prepareCall("{CALL MostrarTablaTuristas()}");
             rs = stmt.executeQuery();
 
-            // Mostrar los datos en la tabla
             while (rs.next()) {
                 String identificacion = rs.getString("identificacion");
                 String carne = rs.getString("carne");

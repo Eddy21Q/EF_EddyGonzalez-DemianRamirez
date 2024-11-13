@@ -40,6 +40,31 @@
             color: #333;
         }
 
+        /* Estilo del spinner de carga */
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #2E8B57;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Animación del spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Ocultar el loader después de cargar la página */
+        .loader-hidden {
+            display: none;
+        }
+
         /* Contenedor principal */
         .container {
             max-width: 800px;
@@ -56,10 +81,39 @@
             margin-bottom: 20px;
         }
 
+        /* Tabla estilizada */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+        }
+
+        /* Borde animado y resplandor en encabezados */
+        th {
+            background-color: #2E8B57;
+            color: white;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Borde animado */
+        th::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            animation: borderMove 2s linear infinite;
+        }
+
+        @keyframes borderMove {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
         }
 
         th, td {
@@ -68,13 +122,8 @@
             border-bottom: 1px solid #ddd;
         }
 
-        th {
-            background-color: #2E8B57; /* Verde para el encabezado */
-            color: white;
-        }
-
         tr:hover {
-            background-color: #f1f1f1; /* Color claro al pasar el ratón */
+            background-color: #f1f1f1;
         }
 
         /* Estilo para el mensaje de error */
@@ -84,8 +133,18 @@
             font-weight: bold;
         }
     </style>
+    <script>
+        // Oculta el loader cuando la página está completamente cargada
+        window.onload = function() {
+            document.querySelector('.loader').classList.add('loader-hidden');
+        };
+    </script>
 </head>
 <body>
+    <!-- Spinner de carga -->
+    <div class="loader"></div>
+
+    <!-- Contenido principal -->
     <div class="container">
         <h1>Listado de Guías</h1>
         <table>
@@ -100,11 +159,11 @@
                 while (resultSet.next()) {
             %>
             <tr>
-                <td><%= resultSet.getString("carne") %></td> <!-- Cambia "carne" por el nombre de tu columna -->
-                <td><%= resultSet.getString("nombre1") %></td> <!-- Cambia "nombre1" por el nombre de tu columna -->
-                <td><%= resultSet.getString("nombre2") %></td> <!-- Cambia "nombre2" por el nombre de tu columna -->
-                <td><%= resultSet.getString("apellido1") %></td> <!-- Cambia "apellido1" por el nombre de tu columna -->
-                <td><%= resultSet.getString("apellido2") %></td> <!-- Cambia "apellido2" por el nombre de tu columna -->
+                <td><%= resultSet.getString("carne") %></td>
+                <td><%= resultSet.getString("nombre1") %></td>
+                <td><%= resultSet.getString("nombre2") %></td>
+                <td><%= resultSet.getString("apellido1") %></td>
+                <td><%= resultSet.getString("apellido2") %></td>
             </tr>
             <%
                 }
@@ -116,7 +175,6 @@
     } catch (Exception e) {
         out.println("<p class='error-message'>Error al conectar a la base de datos: " + e.getMessage() + "</p>");
     } finally {
-        // Cierra la conexión y otros recursos
         if (resultSet != null) resultSet.close();
         if (callableStatement != null) callableStatement.close();
         if (connection != null) connection.close();
