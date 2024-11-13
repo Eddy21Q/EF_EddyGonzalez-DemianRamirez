@@ -6,45 +6,124 @@
     <title>Paquete de Aventura - Turismo Nacional CR</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: url('images/image31.jpg') no-repeat center center fixed;
-            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1e2a47, #1b1b1b);
             color: #fff;
-            display: flex;
-            justify-content: center;
-            padding-top: 20px;
         }
+
         .container {
+            position: relative;
+            z-index: 10;
             background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 30px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            color: #fff;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+            margin: 60px auto;
+            animation: fadeIn 1.5s ease-in-out;
         }
+
         h1 {
+            font-size: 3em;
             text-align: center;
-            color: #4CAF50;
+            color: #00ffcc;
+            text-shadow: 2px 2px 5px rgba(0, 255, 204, 0.7);
+            letter-spacing: 2px;
         }
+
         h2, h3 {
             color: #f0f0f0;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
+
         p {
             line-height: 1.6;
-            margin: 10px 0;
+            font-size: 1.1em;
+            margin-bottom: 20px;
         }
-        .itinerary, .gallery {
-            margin-top: 20px;
+
+        ul {
+            padding-left: 20px;
+            list-style-type: none;
         }
+
+        ul li {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        ul li::before {
+            content: '✔';
+            color: #00ffcc;
+            margin-right: 10px;
+        }
+
+        .itinerary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .itinerary h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
         .gallery img {
-            width: 100px;
-            height: 80px;
-            border-radius: 8px;
-            margin: 5px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
         }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #00ffcc;
+            color: #1e1e1e;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 255, 204, 0.3);
+        }
+
+        .button:hover {
+            background: #1e1e1e;
+            color: #00ffcc;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -85,6 +164,8 @@
             <img src="images/senderismo.jpg" alt="Senderismo">
             <img src="images/rappel.jpg" alt="Rappel">
         </div>
+
+        <a href="#" class="button">Reserva Ahora</a>
     </div>
 </body>
 </html>

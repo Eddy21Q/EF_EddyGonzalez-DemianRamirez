@@ -11,44 +11,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Turismo Nacional</title>
-    <!-- Enlace a Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #0a0a0a; /* Fondo gris oscuro */
+            color: #fff;
+            transition: background-color 4s ease;
         }
 
-        /* Menú superior */
+        /* Estilo para el header */
         header {
-            background-color: #007bff;
+            background: linear-gradient(90deg, rgba(0, 123, 255, 1) 0%, rgba(0, 204, 255, 1) 100%);
             color: white;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         header nav {
             display: flex;
             justify-content: center;
-            position: relative;
+            align-items: center;
+            gap: 20px;
         }
 
         header nav a {
             color: white;
-            margin: 0 20px;
             text-decoration: none;
             font-size: 18px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
 
         header nav a:hover {
-            text-decoration: underline;
+            color: #00ffcc;
         }
 
-        /* Menú desplegable */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -57,10 +62,10 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #007bff;
+            background-color: #333;
             min-width: 160px;
-            z-index: 1;
             border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .dropdown:hover .dropdown-content {
@@ -72,25 +77,29 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            transition: background-color 0.3s ease;
         }
 
         .dropdown-content a:hover {
             background-color: #0056b3;
         }
 
-        /* Galería de imágenes con scroll horizontal */
+        /* Galería */
         .gallery {
             display: flex;
             overflow-x: scroll;
             padding: 20px 0;
             scroll-behavior: smooth;
+            gap: 10px;
+            margin-bottom: 40px;
         }
 
         .gallery-item {
             flex: 0 0 auto;
             width: 60%;
-            margin-right: 20px;
             max-height: 300px;
+            border-radius: 10px;
+            box-shadow: none;
         }
 
         .gallery-item img {
@@ -119,22 +128,27 @@
             justify-content: space-around;
             flex-wrap: wrap;
             padding: 30px;
-            background-color: #fff;
+            gap: 30px;
         }
 
         .package {
             width: 30%;
-            margin-bottom: 30px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
         }
 
         .package img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .package:hover {
+            transform: scale(1.03);
         }
 
         .package .content {
@@ -145,33 +159,38 @@
         .package .content h3 {
             font-size: 22px;
             margin-bottom: 10px;
+            color: #00ffcc;
         }
 
         .package .content p {
             font-size: 16px;
-            color: #555;
+            color: #ddd;
         }
 
         .package .content a {
             display: inline-block;
             margin-top: 15px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #0056b3;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
         .package .content a:hover {
-            background-color: #0056b3;
+            background-color: #00cc99;
         }
 
         /* Footer */
         footer {
-            background-color: #343a40;
+            background: linear-gradient(135deg, #343a40, #007bff);
             color: white;
             padding: 20px;
             text-align: center;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         footer a {
@@ -195,7 +214,6 @@
             <a href="Contacto.jsp">Contacto</a>
             <a href="AcercaDe.jsp">Acerca de</a>
 
-            <!-- Menú desplegable Mantenimiento de Tablas -->
             <div class="dropdown">
                 <a href="javascript:void(0)">Mantenimiento de Tablas</a>
                 <div class="dropdown-content">
@@ -212,7 +230,7 @@
         <div class="gallery-item"><img src="images/image19.jpg" alt="Destino 2"></div>
         <div class="gallery-item"><img src="images/image20.jpg" alt="Destino 3"></div>
         <div class="gallery-item"><img src="images/image21.jpg" alt="Destino 4"></div>
-        <div class="gallery-item"><img src="images/image22.jpg" alt="Destino 1 (repetido)"></div>
+        <div class="gallery-item"><img src="images/image22.jpg" alt="Destino 5"></div>
     </div>
 
     <!-- Paquetes turísticos -->
